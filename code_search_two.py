@@ -51,13 +51,10 @@ root_dir = "/Users/canyonsmith/Desktop/sentient_ai/assistent_ai_code/whispering/
 search_dir = root_dir + search_d
 root_dir = "/Users/canyonsmith/Desktop/sentient_ai/assistent_ai_code/whispering/" + search_d
 
-    
 
 
 
 
-    # split everything after the last / to get the file name
-    
 
 print("Enter the path to the file you want to search: ")
 print(root_dir)
@@ -74,9 +71,7 @@ print("Total number of py files:", len(code_files))
 all_funcs = []
 for code_file in code_files:
     funcs = list(get_functions(code_file))
-    for func in funcs:
-        all_funcs.append(func)
-
+    all_funcs.extend(iter(funcs))
 print("Total number of functions extracted:", len(all_funcs))
 
 from openai.embeddings_utils import get_embedding
@@ -108,7 +103,7 @@ def get_line(path, line_number):
     # this gets the line before the line number, the line number, and the line after the line number
     # then puts them all together and returns them
     with open(path) as f:
-    
+
         data = f.readlines()
     number_above = line_number - 4
     number_two_above = line_number - 4
@@ -118,10 +113,7 @@ def get_line(path, line_number):
 
     # lines between number_two_above and number_two_below
     lines = data[number_two_above:number_two_below]
-    # convert into a string
-    lines = "".join(lines)
-    #
-    return lines
+    return "".join(lines)
     
     
 
