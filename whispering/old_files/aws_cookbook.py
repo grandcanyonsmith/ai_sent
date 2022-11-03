@@ -109,13 +109,13 @@ def get_pricing():
     #     print(service_code)
     list_of_services = [service['ServiceCode'] for service in response]
     print(list_of_services)
-    
-    
+
+
     for service in list_of_services:
         response = client.get_products(
             ServiceCode=service,
         )
-        
+
         response = response['PriceList'][0]
         # convert the response to a dictionary
         response = eval(response)
@@ -123,14 +123,14 @@ def get_pricing():
         print()
         # operation = attributes['operation']
         # product_family = response['product']['productFamily']
-        
+
         # print(operation, product_family)
-        
+
 
     response = client.get_products(
         ServiceCode=service_code,
     )
-    
+
     # print the productFamily
     # print the pricing information
     '''{
@@ -179,9 +179,9 @@ def get_pricing():
     group_description = attributes['groupDescription']
     operation = attributes['operation']
     product_family = response['product']['productFamily']
-    
+
     print(group_description, operation, product_family)
-    
+
     import json
     # get the list of prices
     prices = json.loads(response['PriceList'][0])
